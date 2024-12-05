@@ -1,3 +1,10 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 function calcNetSalary(basicSalary , benefits){ //Fucnction for calculating the net salary
     const grossSalary = basicSalary + benefits; //calculation for gross salary
 
@@ -57,9 +64,13 @@ let NHIF; //calculation for NHIF deductions according to the gross salary
     }; // returns results
 
 }
-const basicSalary = 50000; 
-const benefits = 10000; 
-const result = calcNetSalary(basicSalary, benefits);
+
+rl.question('Enter Basic Salary: ', (basicSalaryInput) => {
+    rl.question('Enter Benefits: ', (benefitsInput) => {
+        const basicSalary = parseFloat(basicSalaryInput);
+        const benefits = parseFloat(benefitsInput);
+        const result = calcNetSalary(basicSalary, benefits);
+
 
 /*
 console.log(result.grossSalary);
@@ -69,8 +80,15 @@ console.log(result.NSSF);
 console.log(result.netSalary);
 */
 
-console.log(`Gross Salary: Ksh ${result.grossSalary}`);
-console.log(`PAYE Tax: Ksh ${result.PAYE}`);
-console.log(`NHIF Deduction: Ksh ${result.NHIF}`);
-console.log(`NSSF Deduction: Ksh ${result.NSSF}`);
-console.log(`Net Salary: Ksh ${result.netSalary}`);
+        console.log(`Gross Salary: Ksh ${result.grossSalary}`);
+        console.log(`PAYE Tax: Ksh ${result.PAYE}`);
+        console.log(`NHIF Deduction: Ksh ${result.NHIF}`);
+        console.log(`NSSF Deduction: Ksh ${result.NSSF}`);
+        console.log(`Net Salary: Ksh ${result.netSalary}`);
+
+        rl.close();
+    });
+
+});
+
+
