@@ -1,3 +1,10 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 //function to check the speed
 function checkSpeed(speed){ //constants declaring different factors 
     const speedLimit = 70; 
@@ -18,9 +25,15 @@ if (points > maxPoints){ // condition to check if the licence should be suspende
 return `Points: ${points}`; //returns points  if the licence is not suspended
      
 }
-//testing different speed values
-console.log(checkSpeed(60));
-console.log(checkSpeed(80));
-console.log(checkSpeed(140));
+//prompts user for testing different speed values 
+rl.question('Enter your speed: ', (input) => {
+    const speed = parseInt(input); // Converts input to an integer
+    if (isNaN(speed)) {
+        console.log("Please enter a valid number.");
+    } else {
+        console.log(checkSpeed(speed)); // Check speed and display result
+    }
+    rl.close();
+});
 
 
